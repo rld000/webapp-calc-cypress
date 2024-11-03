@@ -1,10 +1,6 @@
 let operation = document.getElementById('dzialanie');
 let result = document.getElementById('wynik');
 
-function isNumber(val){
-    return typeof val === 'number';
-}
-
 function operate(sign)
 {
     const l1 = parseFloat(document.getElementById('liczba1').value);
@@ -28,6 +24,9 @@ function operate(sign)
 
     const wynik = tmp(l1, l2, sign);
 
-    operation.textContent = isNumber(wynik) ? `${l1} ${sign} ${l2} = ` : "";
+    if (isNaN(l1) || isNaN(l2)) 
+      return;
+
+    operation.textContent = wynik === "dzielenie przez zero" ? "" : `${l1} ${sign} ${l2} = `;
     result.textContent = wynik;
 }
