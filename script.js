@@ -1,29 +1,33 @@
+let operation = document.getElementById('dzialanie');
 let result = document.getElementById('wynik');
 
-function dodaj() {
-    const liczba1 = parseFloat(document.getElementById('liczba1').value);
-    const liczba2 = parseFloat(document.getElementById('liczba2').value);
-    const wynik = liczba1 + liczba2;
-    result.textContent = wynik;
+function isNumber(val){
+    return typeof val === 'number';
 }
 
-function odejmij() {
-    const liczba1 = parseFloat(document.getElementById('liczba1').value);
-    const liczba2 = parseFloat(document.getElementById('liczba2').value);
-    const wynik = liczba1 - liczba2;
-    result.textContent = wynik;
-}
+function operate(sign)
+{
+    const l1 = parseFloat(document.getElementById('liczba1').value);
+    const l2 = parseFloat(document.getElementById('liczba2').value);
 
-function pomnoz() {
-    const liczba1 = parseFloat(document.getElementById('liczba1').value);
-    const liczba2 = parseFloat(document.getElementById('liczba2').value);
-    const wynik = liczba1 * liczba2;
-    result.textContent = wynik;
-}
+    const tmp = (a, b, sign) => {
+        switch (sign) {
+            case '+':
+              return a + b;
+            case '-':
+              return a - b;
+            case '*':
+              return a * b;
+            case '/':
+              if (b === 0) {
+                return("dzielenie przez zero");
+              }
+              return a / b;
+            };
+        };
 
-function podziel() {
-    const liczba1 = parseFloat(document.getElementById('liczba1').value);
-    const liczba2 = parseFloat(document.getElementById('liczba2').value);
-    const wynik = (liczba2 != 0) ? liczba1 / liczba2 : "Nie można dzielić przez zero";
+    const wynik = tmp(l1, l2, sign);
+
+    operation.textContent = isNumber(wynik) ? `${l1} ${sign} ${l2} = ` : "";
     result.textContent = wynik;
 }

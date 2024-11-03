@@ -5,12 +5,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>kalkulator :)</h1>
     <input type="number" id="liczba1">
     <input type="number" id="liczba2">
-    <button id="add" onclick="dodaj()">+</button>
-    <button id="subtract" onclick="odejmij()">-</button>
-    <button id="multiply" onclick="pomnoz()">x</button>
-    <button id="divide" onclick="podziel()">/</button>
+    <button id="add" onclick="operate('+')">+</button>
+    <button id="subtract" onclick="operate('-')">-</button>
+    <button id="multiply" onclick="operate('*')">x</button>
+    <button id="divide" onclick="operate('/')">/</button>
+    <br><br>
+    <p id="dzialanie"></p>
     <p id="wynik"></p>
     <script src="script.js"></script>
 </body>

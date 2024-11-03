@@ -1,12 +1,4 @@
-/*
-- Czy pola tekstowe są dostępne i użytkownik może wprowadzać do nich liczby.
-- Czy przyciski działają poprawnie i wywołują odpowiednie obliczenia.
-- Czy wynik obliczenia jest wyświetlany poprawnie.
-- Czy aplikacja działa poprawnie dla różnych kombinacji liczb (dodatnie, ujemne, zero).
-- Czy aplikacja obsługuje błędy (np. dzielenie przez zero).
-*/
-
-describe('Kalkulator', () => {
+describe('kalkulator', () => {
   it('pola tekstowe', () => {
     cy.visit('index.html')
     cy.get('#liczba1').type('12345')
@@ -53,14 +45,6 @@ describe('Kalkulator', () => {
     cy.get('#wynik').contains('100')
   })
 
-  it('mnozenie - celowy błąd', () => {
-    cy.visit('index.html')
-    cy.get('#liczba1').type('124')
-    cy.get('#liczba2').type('532')
-    cy.get('#multiply').click()
-    cy.get('#wynik').contains('12345')
-  })
-
   it('mnozenie przez zero', () => {
     cy.visit('index.html')
     cy.get('#liczba1').type('20')
@@ -74,6 +58,14 @@ describe('Kalkulator', () => {
     cy.get('#liczba1').type('10')
     cy.get('#liczba2').type('0')
     cy.get('#divide').click()
-    cy.get('#wynik').contains('Nie można dzielić przez zero')
+    cy.get('#wynik').contains('dzielenie przez zero')
     })
+
+  it('błąd w implementacji testu', () => {
+    cy.visit('index.html')
+    cy.get('#liczba1').type('124')
+    cy.contains('#liczba2').type('532') // tu
+    cy.get('#multiply').click()
+    cy.get('#wynik').contains('12345')
+  })
 })
